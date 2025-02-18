@@ -39,7 +39,7 @@ const router = useRouter()
 const gMap = ref(null)
 
 const handleConfirmTrip = () => {
-    http().post('/api/trip', {
+    http().post('https://sijek-backend.me/api/trip', {
         origin: location.current.geometry,
         destination: location.destination.geometry,
         destination_name: location.destination.name

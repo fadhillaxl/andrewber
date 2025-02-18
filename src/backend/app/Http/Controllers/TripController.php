@@ -50,6 +50,10 @@ class TripController extends Controller
     public function accept(Request $request, Trip $trip)
     {
         // a driver accepts a trip
+        if ($trip->driver_id !== null) {
+            return response()->json(['message' => 'Trip has already been accepted.'], 400);
+        }
+
         $request->validate([
             'driver_location' => 'required'
         ]);
@@ -110,5 +114,12 @@ class TripController extends Controller
         TripLocationUpdated::dispatch($trip, $trip->user);
 
         return $trip;
+    }
+    public function share(Request $request,Trip $trip){
+        $trip_token = Str::random(10);
+        $trip->update([
+            'trip_token' => $trip_token
+        ]);
+        return $trip_token;
     }
 }

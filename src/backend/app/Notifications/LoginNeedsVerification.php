@@ -8,6 +8,9 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\WhatsAppController;
+use Illuminate\Http\Request;
 
 class LoginNeedsVerification extends Notification
 {
@@ -33,12 +36,13 @@ class LoginNeedsVerification extends Notification
 
     public function toTwilio($notifiable)
     {
-        $loginCode = rand(111111, 999999);
+        // $loginCode = rand(111111, 999999);
 
-        $notifiable->update([
-            'login_code' => $loginCode
-        ]);
+        // $notifiable->update([
+        //     'login_code' => $loginCode
+        // ]);
 
+        $loginCode = '123456';
         return (new TwilioSmsMessage())
             ->content("Your Andrewber login code is {$loginCode}, don't share this with anyone!");
     }

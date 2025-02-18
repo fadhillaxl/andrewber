@@ -1,6 +1,17 @@
 <template>
+    <header id="top-header">
+      <div class="header-wrap">
+        <div class="header-back">
+          <a href="/landing"><img src="assets/svg/back-btn-white.svg" alt="back-btn"></a>
+        </div>
+        <div class="header-name">
+          <p>Standby</p>
+        </div>
+      </div>
+      <div class="boder"></div>
+    </header>
     <div class="pt-16">
-        <h1 class="text-3xl font-semibold mb-4">{{ title }}</h1>
+        <h1 class="text-3xl text-white text-center font-semibold mb-4">{{ title }}</h1>
         <div v-if="!trip.id" class="mt-8 flex justify-center">
             <Loader />
         </div>
@@ -50,7 +61,7 @@ const handleDeclineTrip = () => {
 }
 
 const handleAcceptTrip = () => {
-    http().post(`/api/trip/${trip.id}/accept`, {
+    http().post(`https://sijek-backend.me/api/trip/${trip.id}/accept`, {
         driver_location: location.current.geometry
     })
         .then((response) => {
@@ -66,7 +77,10 @@ const handleAcceptTrip = () => {
             })
         })
         .catch((error) => {
-            console.error(error)
+            // alert(error)
+            // alert(response.data.message)
+            alert("Trip has already been accepted by another")
+            handleDeclineTrip()
         })
 }
 

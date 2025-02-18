@@ -14,6 +14,7 @@ class Trip extends Model
     protected $casts = [
         'origin' => 'array',
         'destination' => 'array',
+        'driver' => 'array',
         'driver_location' => 'array',
         'is_started' => 'boolean',
         'is_complete' => 'boolean',

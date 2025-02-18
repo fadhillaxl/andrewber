@@ -79,7 +79,7 @@ const updateMapBounds = (mapObject) => {
 }
 
 const broadcastDriverLocation = () => {
-    http().post(`/api/trip/${trip.id}/location`, {
+    http().post(`https://sijek-backend.me/api/trip/${trip.id}/location`, {
         driver_location: location.current.geometry
     })
         .then((response) => {})
@@ -89,7 +89,7 @@ const broadcastDriverLocation = () => {
 }
 
 const handlePassengerPickedUp = () => {
-    http().post(`/api/trip/${trip.id}/start`)
+    http().post(`https://sijek-backend.me/api/trip/${trip.id}/start`)
         .then((response) => {
             title.value = 'Travelling to destination...'
             location.$patch({
@@ -106,7 +106,7 @@ const handlePassengerPickedUp = () => {
 }
 
 const handleCompleteTrip = () => {
-    http().post(`/api/trip/${trip.id}/end`)
+    http().post(`https://sijek-backend.me/api/trip/${trip.id}/end`)
         .then((response) => {
             title.value = 'Trip completed!'
 

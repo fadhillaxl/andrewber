@@ -1,4 +1,15 @@
 <template>
+    <header id="top-header">
+      <div class="header-wrap">
+        <div class="header-back">
+          <a href="javascript:history.go(-1)"><img src="assets/svg/back-btn-white.svg" alt="back-btn"></a>
+        </div>
+        <div class="header-name">
+          <p>Driver</p>
+        </div>
+      </div>
+      <div class="boder"></div>
+    </header>
     <div class="pt-16">
         <h1 class="text-3xl font-semibold mb-4">Driver and car details</h1>
         <form action="#" @submit.prevent="handleSaveDriver">
@@ -53,7 +64,7 @@ const driverDetails = reactive({
     license_plate: ''
 })
 const handleSaveDriver = () => {
-    http().post('/api/driver', driverDetails)
+    http().post('https://sijek-backend.me/api/driver', driverDetails)
         .then((response) => {
             router.push({
                 name: 'standby'
