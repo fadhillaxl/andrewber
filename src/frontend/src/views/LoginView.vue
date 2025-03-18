@@ -1,4 +1,3 @@
-
 <template>
 
   <ThePreLoader />
@@ -82,7 +81,7 @@
       </div>
       <footer id="let-you-footer">
         <div class="block-footer">
-          <p>Don’t have an account? <a href="sign-up.html">Sign up</a></p>
+          <p>Don't have an account? <a href="sign-up.html">Sign up</a></p>
         </div>
       </footer>
     </div>
@@ -95,7 +94,7 @@ import { reactive, ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router';
 import ThePreLoader from '../components/PreLoader.vue'
-
+import { API_BASE_URL } from '../config'
 
 const router = useRouter()
 
@@ -122,7 +121,7 @@ const getFormattedCredentials = () => {
 }
 
 const handleLogin = () => {
-    axios.post('https://sijek-backend.me/api/login', getFormattedCredentials())
+    axios.post(`${API_BASE_URL}/api/login`, getFormattedCredentials())
         .then((response) => {
             console.log(response.data)
             waitingOnVerification.value = true
@@ -134,7 +133,7 @@ const handleLogin = () => {
 }
 
 const handleVerification = () => {
-    axios.post('https://sijek-backend.me/api/login/verify', getFormattedCredentials())
+    axios.post(`${API_BASE_URL}/api/login/verify`, getFormattedCredentials())
         .then((response) => {
             console.log(response.data) // auth token
             localStorage.setItem('token', response.data)

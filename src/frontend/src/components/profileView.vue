@@ -301,7 +301,7 @@ export default {
   methods: {
     async fetchUserProfile() {
       try {
-        const response = await fetch('https://sijek-backend.me/api/profile', {
+        const response = await fetch('http://127.0.0.1:8000/api/profile', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -321,7 +321,7 @@ export default {
     },
     logout() {
       localStorage.removeItem('token');
-      this.$router.push('https://sijek-backend.me/login');
+      this.$router.push('http://127.0.0.1:8000/login');
     }
   },
 };

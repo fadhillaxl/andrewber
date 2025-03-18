@@ -63,7 +63,7 @@ onMounted(() => {
 })
 
 const handleStartDriving = () => {
-    http().get('https://sijek-backend.me/api/driver')
+    http().get('http://127.0.0.1:8000/api/driver')
         .then((response) => {
             if (response.data.driver) {
                 router.push({

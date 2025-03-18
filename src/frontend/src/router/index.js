@@ -50,7 +50,7 @@ router.beforeEach(async (to) => {
 
 const checkTokenAuthenticity = async () => {
   try {
-    await axios.get('https://sijek-backend.me/api/user', {
+    await axios.get('http://127.0.0.1:8000/api/user', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
     return true
@@ -62,7 +62,7 @@ const checkTokenAuthenticity = async () => {
 
 async function logout() {
   try {
-    await axios.post('https://sijek-backend.me/api/logout', {}, {
+    await axios.post('http://127.0.0.1:8000/api/logout', {}, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
   } catch (error) {

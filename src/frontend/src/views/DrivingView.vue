@@ -42,6 +42,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import http from '@/helpers/http'
 import Tada from '@/components/Tada.vue'
 
+
+
 const location = useLocationStore()
 const trip = useTripStore()
 const router = useRouter()
@@ -79,7 +81,7 @@ const updateMapBounds = (mapObject) => {
 }
 
 const broadcastDriverLocation = () => {
-    http().post(`https://sijek-backend.me/api/trip/${trip.id}/location`, {
+    http().post(`http://127.0.0.1:8000/api/trip/${trip.id}/location`, {
         driver_location: location.current.geometry
     })
         .then((response) => {})
@@ -89,7 +91,7 @@ const broadcastDriverLocation = () => {
 }
 
 const handlePassengerPickedUp = () => {
-    http().post(`https://sijek-backend.me/api/trip/${trip.id}/start`)
+    http().post(`http://127.0.0.1:8000/api/trip/${trip.id}/start`)
         .then((response) => {
             title.value = 'Travelling to destination...'
             location.$patch({
@@ -106,7 +108,7 @@ const handlePassengerPickedUp = () => {
 }
 
 const handleCompleteTrip = () => {
-    http().post(`https://sijek-backend.me/api/trip/${trip.id}/end`)
+    http().post(`http://127.0.0.1:8000/api/trip/${trip.id}/end`)
         .then((response) => {
             title.value = 'Trip completed!'
 
